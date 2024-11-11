@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .login-container h2 {
+            text-align: center;
+        }
+        .form-input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #128c7e;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+        }
+        .toggle-password {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login ke WhatsApp</h2>
+    <form id="loginForm">
+        <input type="text" id="username" class="form-input" placeholder="Username" required>
+        <input type="password" id="password" class="form-input" placeholder="Password" required>
+        
+        <!-- Checkbox untuk Show/Hide Password -->
+        <div class="toggle-password">
+            <input type="checkbox" id="showPassword" style="margin-right: 5px;">
+            <label for="showPassword">Tampilkan Password</label>
+        </div>
+        
+        <button type="submit" class="login-button">Login ke WhatsApp</button>
+        <div id="errorMessage" class="error-message"></div>
+    </form>
+</div>
+
+<script>
+    // Username dan password yang benar
+    const correctUsername = "user";
+    const correctPassword = "password123";
+    const whatsappNumber = "6285215007776"; // Ganti dengan nomor WhatsApp yang valid
+
+    // Form submit handler
+    document.getElementById("loginForm").onsubmit = function(event) {
+        event.preventDefault();
+
+        // Ambil username dan password yang dimasukkan pengguna
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Periksa apakah username dan password sesuai
+        if (username === correctUsername && password === correctPassword) {
+            // Redirect ke WhatsApp
+            window.location.href = "https://wa.me/" + whatsappNumber;
+        } else {
+            // Tampilkan pesan error
+            document.getElementById("errorMessage").textContent = "Username atau password salah!";
+        }
+    };
+
+    // Toggle password visibility
+    document.getElementById("showPassword").addEventListener("change", function() {
+        const passwordField = document.getElementById("password");
+        if (this.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    });
+</script>
+
+</body>
+</html>
